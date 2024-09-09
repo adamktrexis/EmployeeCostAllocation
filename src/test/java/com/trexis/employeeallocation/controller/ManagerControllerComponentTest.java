@@ -25,7 +25,7 @@ public class ManagerControllerComponentTest {
 
         ResponseEntity<String> response = this.restTemplate.getForEntity("/api/managers/1/allocation", String.class);
 
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(200, response.getStatusCode());
         assertEquals(expected, response.getBody(), "Manager allocation API failed");
     }
 }

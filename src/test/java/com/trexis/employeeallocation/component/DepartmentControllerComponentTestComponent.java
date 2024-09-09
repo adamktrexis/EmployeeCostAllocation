@@ -1,4 +1,4 @@
-package com.trexis.employeeallocation.controller;
+package com.trexis.employeeallocation.component;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class DepartmentControllerComponentTest {
+public class DepartmentControllerComponentTestComponent {
 
     @Autowired
     private TestRestTemplate restTemplate;

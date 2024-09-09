@@ -1,13 +1,16 @@
+
 package com.trexis.employeeallocation.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @Entity
-public class Employee {
+public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,14 +18,7 @@ public class Employee {
 
     private String name;
 
-    private String jobType;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "manager_id")
-    private Manager manager;
-
-    public Employee() {
-    }
+    @OneToMany
+    private List<Manager> managers;
 
 }
-

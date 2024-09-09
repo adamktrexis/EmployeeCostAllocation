@@ -19,7 +19,7 @@ public class DepartmentControllerTest {
         ResponseEntity<String> response = this.restTemplate.getForEntity("/api/departments/1/allocation", String.class);
 
         // Assuming the expected result for a department's allocation is predefined
-        assertEquals(200, response.getStatusCodeValue(), "Should return 200 for valid department ID");
+        assertEquals(200, response.getStatusCode(), "Should return 200 for valid department ID");
         assertEquals("Department 1's allocation calculated", response.getBody(), "Department allocation calculation failed");
     }
 }

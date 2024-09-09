@@ -16,6 +16,6 @@ public class DepartmentControllerSadTest {
     @Test
     public void testGetDepartmentAllocation_Sad() {
         ResponseEntity<String> response = restTemplate.getForEntity("/api/departments/-1/allocation", String.class);
-        assertEquals(400, response.getStatusCodeValue()); // assuming bad request for invalid ID
+        assertEquals(400, response.getStatusCode()); // assuming bad request for invalid ID
     }
 }
