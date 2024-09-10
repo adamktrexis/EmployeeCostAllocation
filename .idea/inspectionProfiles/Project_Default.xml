@@ -7,16 +7,25 @@
         <list>
           <option value="employee-allocation" />
           <option value="employee-allocation" />
+          <option value="All libs from EmployeeCostAllocation" />
+          <option value="All libs from EmployeeCostAllocation" />
+          <option value="All libs from EmployeeCostAllocation" />
         </list>
       </option>
       <option name="ignoredPackages">
         <list>
           <option value="ch.qos.logback:logback-classic:1.4.5" />
           <option value="ch.qos.logback:logback-core:1.4.5" />
+          <option value="org.yaml:snakeyaml:1.33" />
+          <option value="org.springframework.security:spring-security-web:6.1.2" />
+          <option value="ch.qos.logback:logback-core:1.4.8" />
         </list>
       </option>
       <option name="ignoredReasons">
         <list>
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
           <option value="Not exploitable" />
           <option value="Not exploitable" />
         </list>

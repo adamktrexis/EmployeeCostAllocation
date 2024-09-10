@@ -1,3 +1,4 @@
+
 package com.trexis.employeeallocation.model;
 
 import jakarta.persistence.*;
@@ -14,7 +15,5 @@ public class Manager extends Employee {
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Employee> employeesManaged;
 
-    @GeneratedValue
-    private Long id;
-
+    // Removed the redundant 'id' field since it is inherited from Employee
 }
