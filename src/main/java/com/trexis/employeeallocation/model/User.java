@@ -1,36 +1,32 @@
 package com.trexis.employeeallocation.model;
 
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
-
 @Setter
 @Getter
 @Entity
+@Table(name = "app_user")
+
 public class User {
 
+    // Getters and setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
-
     private String password;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
-    @Column(name = "role")
-    private Set<String> roles; // e.g., ADMIN, USER
+    // Parameterless constructor (required by JPA)
+    public User() {}
 
-    public User() {
-    }
-
-    public User(String username, String password, Set<String> roles) {
+    // Constructor with parameters for username and password
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.roles = roles;
     }
 
 }

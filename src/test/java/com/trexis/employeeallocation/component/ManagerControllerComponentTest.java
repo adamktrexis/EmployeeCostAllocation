@@ -1,4 +1,4 @@
-package com.trexis.employeeallocation.controller;
+package com.trexis.employeeallocation.component;
 
 import com.trexis.employeeallocation.service.ManagerService;
 import org.junit.jupiter.api.Test;

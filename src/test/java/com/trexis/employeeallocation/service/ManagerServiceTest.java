@@ -10,13 +10,13 @@ public class ManagerServiceTest {
     @Test
     public void testCalculateManagerAllocation() {
         Long managerId = 1L;
-        String result = managerService.calculateManagerAllocation(managerId);
+        String result = String.valueOf(managerService.calculateManagerAllocation(managerId));
         assertEquals("Manager 1's allocation calculated.", result);
     }
 
     @Test
     public void testListManagersWithoutReports() {
-        String result = managerService.listManagersWithoutReports();
+        String result = managerService.listManagersWithoutReports().toString();
         assertEquals("List of managers without reports", result);
     }
 }

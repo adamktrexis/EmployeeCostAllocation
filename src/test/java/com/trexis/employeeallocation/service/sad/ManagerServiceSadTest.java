@@ -1,18 +1,23 @@
+
 package com.trexis.employeeallocation.service.sad;
 
 import com.trexis.employeeallocation.service.ManagerService;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ManagerServiceSadTest {
+class ManagerServiceSadTest {
 
-    private ManagerService managerService = new ManagerService();
+    @InjectMocks
+    private ManagerService managerService;
 
     @Test
-    public void testCalculateManagerAllocation_Sad() {
-        Long invalidManagerId = -1L;
-        assertThrows(IllegalArgumentException.class, () -> {
-            managerService.calculateManagerAllocation(invalidManagerId);
-        });
+    void testCalculateManagerAllocation_InvalidManagerId() {
+        MockitoAnnotations.openMocks(this);
+
+        // Simulate an invalid manager ID
+        assertThrows(IllegalArgumentException.class, () -> managerService.calculateManagerAllocation(-1L));
     }
 }

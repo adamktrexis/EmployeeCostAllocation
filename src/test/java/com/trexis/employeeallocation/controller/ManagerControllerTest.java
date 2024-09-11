@@ -28,7 +28,7 @@ public class ManagerControllerTest {
         Long managerId = 1L;
         String expected = "Manager 1's allocation calculated";
 
-        when(managerService.calculateManagerAllocation(managerId)).thenReturn(expected);
+        when(managerService.calculateManagerAllocation(managerId)).thenReturn(Integer.valueOf(expected));
 
         String response = this.restTemplate.getForObject("/api/managers/1/allocation", String.class);
 

@@ -2,14 +2,8 @@ package com.trexis.employeeallocation.service;
 
 import com.trexis.employeeallocation.model.User;
 import com.trexis.employeeallocation.repository.UserRepository;
-import com.trexis.employeeallocation.util.JwtTokenUtil;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,25 +16,15 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    @Transactional
+    public void createUser(String username, String rawPassword) {
+        // Encrypt the raw password before saving it
+        String encodedPassword = passwordEncoder.encode(rawPassword);
 
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+        // Create new User object
+        User user = new User(username, encodedPassword);
 
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-    public User registerNewUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
-    }
-
-    public String loginUser(String username, String password) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(username, password));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        return jwtTokenUtil.generateToken(userDetails.getUsername());
+        // Save user to the database
+        userRepository.save(user);
     }
 }

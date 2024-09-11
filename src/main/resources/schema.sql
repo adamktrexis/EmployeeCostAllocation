@@ -1,25 +1,31 @@
-
+-- Schema for Manager
 CREATE TABLE manager (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255)
+     id BIGINT AUTO_INCREMENT PRIMARY KEY,
+     name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE employee (
+-- Schema for Employee
+CREATE TABLE IF NOT EXISTS employee (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
-    job_type VARCHAR(255),
+    name VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL,
     manager_id BIGINT,
-    CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES manager(id)
+    CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES employee(id)
 );
 
-CREATE TABLE user (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL
+
+-- Schema for Users (app_user)
+CREATE TABLE app_user (
+      id BIGINT AUTO_INCREMENT PRIMARY KEY,
+      username VARCHAR(255) NOT NULL UNIQUE,
+      password VARCHAR(255) NOT NULL
 );
 
+-- Schema for User Roles
 CREATE TABLE user_roles (
-    user_id BIGINT,
-    role VARCHAR(255),
-    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user(id)
+     id BIGINT AUTO_INCREMENT PRIMARY KEY,
+     user_id BIGINT,
+     role VARCHAR(50),
+     FOREIGN KEY (user_id) REFERENCES app_user(id)
 );
+

@@ -11,7 +11,7 @@ public class DepartmentServiceHappyTest {
     @Test
     public void testCalculateDepartmentAllocation_Happy() {
         Long departmentId = 1L;
-        String result = departmentService.calculateDepartmentAllocation(departmentId);
+        String result = String.valueOf(departmentService.calculateDepartmentAllocation(departmentId));
         assertEquals("Department 1's allocation calculated.", result);
     }
 }

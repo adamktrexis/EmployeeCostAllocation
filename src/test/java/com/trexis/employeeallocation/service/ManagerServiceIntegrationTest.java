@@ -17,7 +17,7 @@ public class ManagerServiceIntegrationTest {
         Long managerId = 1L;
 
         // Assume we are testing the actual service interaction with the repository (e.g., finding by ID)
-        String result = managerService.calculateManagerAllocation(managerId);
+        String result = String.valueOf(managerService.calculateManagerAllocation(managerId));
 
         assertNotNull(result, "Manager allocation should not be null");
     }

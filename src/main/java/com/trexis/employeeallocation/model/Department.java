@@ -1,4 +1,3 @@
-
 package com.trexis.employeeallocation.model;
 
 import jakarta.persistence.*;
@@ -18,7 +17,8 @@ public class Department {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "department_id", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Manager> managers;
 
 }
+

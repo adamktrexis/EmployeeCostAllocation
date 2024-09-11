@@ -1,4 +1,4 @@
-package com.trexis.employeeallocation.controller;
+package com.trexis.employeeallocation.component;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

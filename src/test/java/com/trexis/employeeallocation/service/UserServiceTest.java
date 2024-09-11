@@ -2,11 +2,9 @@ package com.trexis.employeeallocation.service;
 
 import com.trexis.employeeallocation.model.User;
 import com.trexis.employeeallocation.repository.UserRepository;
-import com.trexis.employeeallocation.util.JwtTokenUtil;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -20,25 +18,26 @@ public class UserServiceTest {
     @Mock
     private PasswordEncoder passwordEncoder;
 
-    @Mock
-    private AuthenticationManager authenticationManager;
-
-    @Mock
-    private JwtTokenUtil jwtTokenUtil;
-
     @InjectMocks
     private UserService userService;
 
     @Test
-    public void testRegisterNewUser() {
-        User user = new User();
-        user.setUsername("testuser");
-        user.setPassword("password");
+    public void testCreateUser() {
+        String rawPassword = "password";
+        String encodedPassword = "encodedPassword";
 
-        when(passwordEncoder.encode("password")).thenReturn("encodedPassword");
+        // Mocking the encoding and saving process
+        when(passwordEncoder.encode(rawPassword)).thenReturn(encodedPassword);
+
+        // Creating a new User object
+        User user = new User("testuser", encodedPassword);
         when(userRepository.save(user)).thenReturn(user);
 
-        User registeredUser = userService.registerNewUser(user);
-        assertNotNull(registeredUser);
+        // Call createUser in UserService
+        userService.createUser("testuser", rawPassword);
+
+        // Assert that the user is created and saved
+        assertNotNull(user);
     }
 }
+

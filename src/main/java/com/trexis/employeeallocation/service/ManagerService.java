@@ -1,28 +1,41 @@
+
 package com.trexis.employeeallocation.service;
 
+import com.trexis.employeeallocation.model.Employee;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ManagerService {
 
-    // Simple allocation calculation based on hierarchy
-    public String calculateManagerAllocation(Long id) {
-        if (id == 1L) {
-            return "$4200"; // Manager A’s allocation
-        } else if (id == 2L) {
-            return "$3600"; // Manager B’s allocation
-        } else if (id == 3L) {
-            return "$1200"; // Manager C’s allocation
-        } else if (id == 4L) {
-            return "$600"; // Manager D’s allocation
-        } else if (id == 5L) {
-            return "$2600"; // Manager E’s allocation
-        } else {
-            return "Invalid manager ID";
+    // Example of manager data, ideally, this will come from a database
+    private List<Employee> employees = MockData.getEmployees();
+
+    // Recursively calculate the total cost allocation for a manager and their reports
+    public int calculateManagerAllocation(Long managerId) {
+        Employee manager = findEmployeeById(managerId);
+        if (manager != null) {
+            return calculateAllocationRecursive(manager);
         }
+        throw new IllegalArgumentException("Invalid manager ID");
     }
 
-    public String listManagersWithoutReports() {
-        return "Manager D"; // Manager D has no reports
+    private int calculateAllocationRecursive(Employee manager) {
+        int totalCost = manager.getCost();
+        for (Employee report : manager.getReports()) {
+            totalCost += calculateAllocationRecursive(report); // Recursively add the cost of all reports
+        }
+        return totalCost;
+    }
+
+    public List<Employee> listManagersWithoutReports() {
+        return employees.stream()
+            .filter(e -> e.getRole().equals("Manager") && e.getReports().isEmpty())
+            .toList();
+    }
+
+    private Employee findEmployeeById(Long id) {
+        return employees.stream().filter(e -> e.getId().equals(id)).findFirst().orElse(null);
     }
 }

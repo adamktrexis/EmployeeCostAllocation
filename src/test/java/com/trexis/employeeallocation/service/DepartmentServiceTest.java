@@ -10,7 +10,7 @@ public class DepartmentServiceTest {
     @Test
     public void testCalculateDepartmentAllocation() {
         Long departmentId = 1L;
-        String result = departmentService.calculateDepartmentAllocation(departmentId);
+        String result = String.valueOf(departmentService.calculateDepartmentAllocation(departmentId));
         assertEquals("Department 1's allocation calculated.", result);
     }
 }

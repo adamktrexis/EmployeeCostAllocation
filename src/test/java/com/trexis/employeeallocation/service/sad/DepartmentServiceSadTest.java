@@ -1,18 +1,23 @@
+
 package com.trexis.employeeallocation.service.sad;
 
 import com.trexis.employeeallocation.service.DepartmentService;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class DepartmentServiceSadTest {
+class DepartmentServiceSadTest {
 
-    private DepartmentService departmentService = new DepartmentService();
+    @InjectMocks
+    private DepartmentService departmentService;
 
     @Test
-    public void testCalculateDepartmentAllocation_Sad() {
-        Long invalidDepartmentId = -1L;
-        assertThrows(IllegalArgumentException.class, () -> {
-            departmentService.calculateDepartmentAllocation(invalidDepartmentId);
-        });
+    void testCalculateDepartmentAllocation_InvalidDepartmentId() {
+        MockitoAnnotations.openMocks(this);
+
+        // Simulate an invalid department ID
+        assertThrows(IllegalArgumentException.class, () -> departmentService.calculateDepartmentAllocation(-1L));
     }
 }

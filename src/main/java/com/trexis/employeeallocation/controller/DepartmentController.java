@@ -13,6 +13,8 @@ public class DepartmentController {
 
     @GetMapping("/{id}/allocation")
     public String getDepartmentAllocation(@PathVariable Long id) {
-        return departmentService.calculateDepartmentAllocation(id);
+        int allocation = departmentService.calculateDepartmentAllocation(id);
+        return String.valueOf(allocation);
     }
 }
+
