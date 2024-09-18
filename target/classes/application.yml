@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: "password"
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/master
+
+keycloak:
+  realm: master
+  auth-server-url: http://localhost:8080/auth
+  resource: Employee-Cost-Allocation
+  credentials:
+    secret: 4iamPN7i1veMwUWZsfS0NvUREAwgHmK7
+  public-client: false
+  ssl-required: external
+  use-resource-role-mappings: true
+  admin-api-url: http://localhost:8080/auth/admin/realms/master/
+  token-api-url: http://localhost:8080/auth/realms/master/protocol/openid-connect/token
+  client-id: admin-cli
+  admin-username: adamk
+  admin-password: hOCzK7Xms1Wnx05F
+

@@ -1,0 +1,141 @@
+openapi: 3.0.1
+info:
+  title: Employee Allocation API
+  version: 1.0.0
+  description: API for managing employee Allocations.
+servers:
+  - url: http://localhost:8080
+    description: Local server
+
+paths:
+  /api/auth/login:
+    post:
+      summary: Login a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationRequest'
+      responses:
+        '200':
+          description: Successfully authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponse'
+        '400':
+          description: Invalid credentials
+        '500':
+          description: Authentication failed
+
+  /api/auth/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid user input
+        '409':
+          description: User conflict
+        '500':
+          description: Server error during registration
+
+  /api/departments/{id}/allocation:
+    get:
+      summary: Get department allocation by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: Department ID
+      responses:
+        '200':
+          description: Allocation returned
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Department not found
+
+  /api/managers/{id}/allocation:
+    get:
+      summary: Get manager allocation by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: Manager ID
+      responses:
+        '200':
+          description: Allocation returned
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Manager not found
+
+  /api/managers/no-reports:
+    get:
+      summary: List managers without reports
+      responses:
+        '200':
+          description: Managers returned
+          content:
+            text/plain:
+              schema:
+                type: string
+
+components:
+  schemas:
+    AuthenticationRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+        - username
+        - password
+
+    AuthenticationResponse:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+        - token
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        password:
+          type: string
+      required:
+        - username
+        - password

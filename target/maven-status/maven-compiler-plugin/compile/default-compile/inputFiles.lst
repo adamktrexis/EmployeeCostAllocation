@@ -1,0 +1,13 @@
+/Users/adamkraft/Documents/Study/EmployeeCostAllocation/src/main/java/com/trexis/employeeallocation/repository/UserRepositoryDTO.java
+/Users/adamkraft/Documents/Study/EmployeeCostAllocation/src/main/java/com/trexis/employeeallocation/security/KeycloakSecurityConfig.java
+/Users/adamkraft/Documents/Study/EmployeeCostAllocation/src/main/java/com/trexis/employeeallocation/model/Department.java
+/Users/adamkraft/Documents/Study/EmployeeCostAllocation/src/main/java/com/trexis/employeeallocation/model/User.java
+/Users/adamkraft/Documents/Study/EmployeeCostAllocation/src/main/java/com/trexis/employeeallocation/EmployeeAllocationApplication.java
+/Users/adamkraft/Documents/Study/EmployeeCostAllocation/src/main/java/com/trexis/employeeallocation/controller/AuthController.java
+/Users/adamkraft/Documents/Study/EmployeeCostAllocation/src/main/java/com/trexis/employeeallocation/service/DepartmentService.java
+/Users/adamkraft/Documents/Study/EmployeeCostAllocation/src/main/java/com/trexis/employeeallocation/controller/DepartmentController.java
+/Users/adamkraft/Documents/Study/EmployeeCostAllocation/src/main/java/com/trexis/employeeallocation/controller/ManagerController.java
+/Users/adamkraft/Documents/Study/EmployeeCostAllocation/src/main/java/com/trexis/employeeallocation/service/ManagerService.java
+/Users/adamkraft/Documents/Study/EmployeeCostAllocation/src/main/java/com/trexis/employeeallocation/service/UserService.java
+/Users/adamkraft/Documents/Study/EmployeeCostAllocation/src/main/java/com/trexis/employeeallocation/repository/EmployeeRepositoryDTO.java
+/Users/adamkraft/Documents/Study/EmployeeCostAllocation/src/main/java/com/trexis/employeeallocation/model/Employee.java
