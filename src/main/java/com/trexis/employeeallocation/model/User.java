@@ -12,7 +12,6 @@ import lombok.Setter;
 
 public class User {
 
-    // Getters and setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,10 +19,8 @@ public class User {
     private String username;
     private String password;
 
-    // Parameterless constructor (required by JPA)
     public User() {}
 
-    // Constructor with parameters for username and password
     public User(String username, String password) {
         this.username = username;
         this.password = password;

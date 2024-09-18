@@ -109,3 +109,11 @@ The resulting JAR file can be found in the `target` directory.
 - Add integration tests for API endpoints.
 - Implement caching for frequently accessed data.
 
+
+[//]: # (Questions:)
+
+[//]: # (how does the redirect work? this is a backend? )
+
+[//]: # (Generation of Open API what do we interface with and what don't we? )
+
+[//]: # (Method of mock data, is it per test, or a larger file? )

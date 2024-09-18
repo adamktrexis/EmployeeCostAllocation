@@ -24,10 +24,8 @@ public class ManagerController {
     @GetMapping("/no-reports")
     public String listManagersWithoutReports() {
         List<Employee> managersWithoutReports = managerService.listManagersWithoutReports();
-
-        // Convert the list of Employee objects to a string with their names
         return managersWithoutReports.stream()
-                .map(Employee::getName)  // Extract the name of each Employee
-                .collect(Collectors.joining(", "));  // Join the names with commas
+                .map(Employee::getName)
+                .collect(Collectors.joining(", "));
     }
 }

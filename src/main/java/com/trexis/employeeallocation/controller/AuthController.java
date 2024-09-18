@@ -1,14 +1,11 @@
+
 package com.trexis.employeeallocation.controller;
 
-import com.trexis.employeeallocation.security.JwtUtil;
-import com.trexis.employeeallocation.model.AuthenticationRequest;
-import com.trexis.employeeallocation.model.AuthenticationResponse;
+import com.trexis.employeeallocation.model.User;
+import com.trexis.employeeallocation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,25 +13,19 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private UserService userService;
 
-    @Autowired
-    private JwtUtil jwtUtil;
-
-    @PostMapping("/login")
-    public AuthenticationResponse login(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
         try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            authenticationRequest.getUsername(), authenticationRequest.getPassword()));
-
-            String jwtToken = jwtUtil.generateToken(authenticationRequest.getUsername());
-
-            return new AuthenticationResponse(jwtToken);
-        } catch (BadCredentialsException e) {
-            throw new Exception("Invalid username or password", e);
-        } catch (AuthenticationException e) {
-            throw new Exception("Authentication failed", e);
+            ResponseEntity<String> createdUser = userService.createUserInKeycloak(user.getUsername(), user.getPassword());
+            return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        } catch (Exception e) {
+            return new ResponseEntity<>("An error occurred during registration", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

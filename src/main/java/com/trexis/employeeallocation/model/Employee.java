@@ -18,16 +18,21 @@ public class Employee {
     private Long id;
 
     private String name;
-    private String role;  // Developer, QA Tester, Manager
+    private String role;
 
-    // Self-referencing relationship to model manager-employee hierarchy
+    // Many employees report to one manager (self-referencing relationship)
     @ManyToOne
-    @JoinColumn(name = "manager_id")
-    private Employee manager;  // Manager of this employee
+    @JoinColumn(name = "MANAGER_ID")
+    private Employee manager;
 
-    // List of employees that report to this manager
+    // One manager can have many employees reporting to them
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Employee> reports = new ArrayList<>();
+
+    // Many employees belong to one department
+    @ManyToOne
+    @JoinColumn(name = "DEPARTMENT_ID")
+    private Department department;
 
     public Employee() {}
 
@@ -37,9 +42,10 @@ public class Employee {
         this.role = role;
     }
 
+    // Add a report (subordinate) to the manager
     public void addReport(Employee employee) {
-        employee.setManager(this);  // Set this employee as the manager
-        this.reports.add(employee);  // Add to the reports list
+        employee.setManager(this);
+        this.reports.add(employee);
     }
 
     // Job role cost logic
@@ -52,3 +58,4 @@ public class Employee {
         };
     }
 }
+

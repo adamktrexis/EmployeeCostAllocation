@@ -2,6 +2,7 @@
 <module version="4">
   <component name="AdditionalModuleElements">
     <content url="file://$MODULE_DIR$" dumb="true">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/gen" isTestSource="false" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
     </content>
   </component>
@@ -11,7 +12,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="entityManagerFactory" value="33534632-ac47-446b-990c-4caeae8d9f35" />
+          <factory-entry name="entityManagerFactory" value="9940a093-ee32-469f-b41b-46e7edd6664a" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
